@@ -11,8 +11,12 @@ export const booksApi = Router();
 
 
 booksApi.get("/", async (req, res) => {
-  const bookList = await getBookList();
-  res.send(bookList);
+    try {
+        const bookList = await getBookList();
+        res.send(bookList);
+    } catch (error) {
+        console.error(error);
+    };
 })
 .get("/:id", async (req, res) => {
   const { id } = req.params;
